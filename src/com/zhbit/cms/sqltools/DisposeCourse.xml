@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zhbit.cms.sqltools.DisposeCourse">
+
+    <select id="CreateCourse" parameterType="CourseInfo" resultType="int">
+        EXEC F_CreateCourse
+            @CourseName=#{CourseName},
+            @ClassName=#{ClassName},
+            @Week=#{Week},
+            @ClassWeek=#{ClassWeek},
+            @ClassTime=#{ClassTime},
+            @Teacher=#{Teacher},
+            @RID=#{RID},
+            @StuCount=#{StuCount},
+            @CurTermID=#{CurTermID}
+    </select>
+
+    <select id="UpdateCourse" parameterType="CourseInfo">
+        EXEC F_ModifyCourse
+        @CID=#{CourseID},@CourseName=#{CourseName},@ClassName=#{ClassName},@Week=#{Week},@ClassWeek=#{ClassWeek},
+        @ClassTime=#{ClassTime},@Teacher=#{Teacher},@RID=#{RID},@StuCount=#{StuCount},@CurTermID=#{CurTermID}
+    </select>
+
+    <delete id="DeleteCourse" parameterType="int">
+        DELETE FROM CourseInfo WHERE CID=#{id}
+    </delete>
+
+    <select id="FilterCourse" parameterType="CourseInfo" resultType="CourseInfo">
+        EXEC F_FilterCourse
+        <if test="Week!=-1">@Week=#{Week}</if>
+        <if test="Week==-1">@Week=128</if>
+        <if test="ClassWeek!=-1">,@ClassWeek=#{ClassWeek}</if>
+        <if test="ClassTime!=-1">,@ClassTime=#{ClassTime}</if>
+        <if test="RID!=null">,@RID=#{RID}</if>
+        <if test="CurTermID!=-1">,@TermID=#{CurTermID}</if>
+    </select>
+</mapper>

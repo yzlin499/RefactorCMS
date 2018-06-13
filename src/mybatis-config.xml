@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <!-- 指定 MyBatis 所用日志的具体实现 -->
+    <settings>
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
+
+    <typeAliases>
+        <package name="com.zhbit.cms.infobeans"/>
+    </typeAliases>
+
+    <environments default="sql server">
+        <!-- 环境配置，即连接的数据库。 -->
+        <environment id="sql server">
+            <!--  指定事务管理类型，type="JDBC"指直接简单使用了JDBC的提交和回滚设置 -->
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+                <property name="url" value="jdbc:sqlserver://10.0.138.172:1433;database=CMS2_db"/>
+                <property name="username" value="sa"/>
+                <property name="password" value="zhbit2017!!!"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+
+    <mappers>
+        <mapper resource="com/zhbit/cms/sqltools/DisposeUser.xml"/>
+        <mapper resource="com/zhbit/cms/sqltools/DisposeCourse.xml"/>
+        <mapper resource="com/zhbit/cms/sqltools/DisposeBuildRoom.xml"/>
+        <mapper resource="com/zhbit/cms/sqltools/DisposeTerm.xml"/>
+    </mappers>
+
+</configuration>

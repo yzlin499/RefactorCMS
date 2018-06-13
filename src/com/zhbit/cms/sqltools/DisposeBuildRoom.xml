@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zhbit.cms.sqltools.DisposeBuildRoom">
+
+    <select id="CreateRoom" parameterType="RoomInfo" resultType="int">
+        EXEC  F_CreateRoom @RoomName=#{RoomName},@BuildingName=#{BuildingName},@MaxStudentCount=#{MaxStudentCount}
+        <if test="UseFor!=null">,@UseFor=#{UseFor}</if>
+    </select>
+
+    <select id="SelectRoom" parameterType="String" resultType="java.util.Map">
+        SELECT DISTINCT ${_parameter}
+        FROM RoomInfo,BuildingInfo
+        WHERE RoomInfo.BID=BuildingInfo.BID
+    </select>
+
+    <select id="UpdateRoom" parameterType="RoomInfo">
+        EXEC F_ModifyRoom @RID=#{RoomID},@RoomName=#{RoomName},@BuildingName=#{BuildingName},
+                          @MaxStudentCount=#{MaxStudentCount},@UseFor=#{UseFor}
+    </select>
+
+    <delete id="DeleteRoom" parameterType="int">
+        DELETE FROM RoomInfo WHERE RID=#{id}
+    </delete>
+
+    <select id="FilterRoom" parameterType="FilterRoomParam" resultType="int">
+        EXEC F_FilterRoom @FindUsing=#{FindUsing},@Week=#{Week},@ClassWeek=#{ClassWeek},@ClassTime=#{ClassTime},
+                          @TermID=#{TermID}
+        <if test="BuildingName!=null">,@BuildingName=#{BuildingName}</if>
+    </select>
+
+    <select id="QueryRoom" parameterType="QueryRoomParam" resultType="map">
+        EXEC F_QueryRoom
+                @TermID=#{TermID},
+                @FindUsing=#{FindUsing},
+                @QueryWeek=#{QueryWeek},
+                @QueryClassWeek=#{QueryClassWeek}
+        <if test="BuildingName!=null">,@BuildingName=#{BuildingName}</if>
+    </select>
+    
+    <!--<update id="BindingBuuid" parameterType="BindingBIDAndBuuid">-->
+        <!--UPDATE BuildingInfo SET BUUID=#{Buuid} WHERE BID=#{BID}-->
+    <!--</update>-->
+</mapper>

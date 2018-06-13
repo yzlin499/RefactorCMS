@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zhbit.cms.sqltools.DisposeTerm">
+    <select id="SelectTerm" resultType="TermInfo">
+        SELECT TID AS TermID,TName AS TermName,TStartDate AS StartDate FROM TermInfo
+    </select>
+
+    <select id="CreateTerm" parameterType="TermInfo" resultType="int">
+        EXEC F_CreateTerm @TermName=#{TermName}
+        <if test="StartDate!=null">,@StartDate=#{StartDate}</if>
+    </select>
+    <update id="UpdateTerm" parameterType="TermInfo">
+        UPDATE TermInfo
+        <set>
+            <if test="TermID!=-1">TID=#{TermID},</if>
+            <if test="TermName!=null">TName=#{TermName},</if>
+            <if test="StartDate!=null">TStartDate=#{StartDate}</if>
+        </set>
+        WHERE TID=#{TermID}
+    </update>
+
+    <delete id="DeleteTerm" parameterType="int">
+        DELETE FROM TermInfo WHERE RID=#{id}
+    </delete>
+    
+    <select id="CurrentTerm" resultType="date">
+        SELECT T.TStartDate
+        FROM dbo.GlobalInfo AS G,dbo.TermInfo AS T
+        WHERE GValue=T.TID
+    </select>
+
+</mapper>

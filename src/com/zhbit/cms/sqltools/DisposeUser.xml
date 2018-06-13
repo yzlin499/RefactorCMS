@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zhbit.cms.sqltools.DisposeUser">
+
+    <select id="Register" parameterType="UserInfo">
+        EXEC F_Register @UserName=#{UserName},@PassWord=#{PassWord}
+        <if test="Name!=null">,@Name=#{Name}</if>
+        <if test="EMail!=null">,@EMail=#{EMail}</if>
+        <if test="ClassName!=null">,@ClassName=#{ClassName}</if>
+        <if test="TelPhone!=null">,@TelPhone=#{TelPhone}</if>
+        <if test="sex!=null">,@Sex=#{sex}</if>
+    </select>
+    
+    <select id="LoginUser" parameterType="UserInfo" resultType="UserInfo">
+        EXEC F_LoginUser @UserName=#{UserName},@PassWord=#{PassWord},@PGroup=#{PersonGroup}
+    </select>
+
+    <select id="SelectPerson" parameterType="int" resultType="UserInfo">
+        SELECT PID AS PersonID,
+               PUserName AS UserName,
+               PCtrlLevel AS PersonCtrlLevel,
+               PEmail AS EMail,
+               PName AS Name,
+               PTel AS TelPhone,
+               PClass AS ClassName,
+               PSex AS sex
+        FROM PersonInfo
+    </select>
+
+    <!--<select id="BindingUser" parameterType="WeChatBindingInfo">-->
+        <!--EXEC F_BindUser-->
+        <!--@UserName=#{UserName},-->
+        <!--@Password=#{Password},-->
+        <!--@BindType=#{BindType},-->
+        <!--@BindValue=#{BindValue}-->
+    <!--</select>-->
+    <!--TODO:一个地方-->
+    
+    <!--<update id="UpdateBuildingInfo" parameterType="UpdateBuildingInfo">-->
+        <!--update BuildingInfo set Buuid=@buuid where bid=@bid-->
+    <!--</update>-->
+</mapper>

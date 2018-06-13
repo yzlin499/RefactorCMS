@@ -1,0 +1,31 @@
+package com.zhbit.cms.servlets;
+
+import com.zhbit.cms.wechat.WeChatEventPool;
+import com.zhbit.cms.wechat.WeChatIO;
+import com.zhbit.cms.wechat.event.WeChatEvent;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+@Controller
+public class WeChatMain{
+    private static WeChatEventPool weChatEventPool;
+    static{
+        weChatEventPool=WeChatEventPool.getInstance();
+        ApplicationContext ac=new FileSystemXmlApplicationContext("classpath:com/zhbit/cms/wechat/WeChatFunction.xml");
+        for (String a:ac.getBeanNamesForType(WeChatEvent.class)) {
+            weChatEventPool.addWeChatEvent((WeChatEvent) ac.getBean(a));
+        }
+    }
+
+    @RequestMapping("/weChatMain")
+    public void doWeChat(HttpServletRequest req, HttpServletResponse resp){
+        weChatEventPool.newMsg(new WeChatIO(req,resp));
+    }
+}

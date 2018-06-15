@@ -7,9 +7,9 @@ import org.apache.ibatis.session.SqlSession;
 
 import java.util.*;
 
-public class Room implements SelectOperate{
+public class Term implements SelectOperate {
     private Set<String> wordSet=new HashSet<>(Arrays.asList(
-            "RID","RName","BID","RMaxCount","RUseFor"
+            "TID","TName","TStartDate"
     ));
 
     @Override
@@ -19,6 +19,6 @@ public class Room implements SelectOperate{
 
     @Override
     public List<Map<String, ?>> selectOperate(String column, SqlSession sqls) throws CMSException {
-        return sqls.selectList(SqlKey.SELECT_ROOM,column);
+        return sqls.selectList(SqlKey.SELECT_TERM,column);
     }
 }

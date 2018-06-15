@@ -28,27 +28,35 @@ public class Select{
     @RequestMapping("/select/{kind}")
     public @ResponseBody
     JSONObject doFilter(@PathVariable("kind")String kind,
-                        @RequestBody JSONObject param){
-        return operateMaps.containsKey(kind) ?
-                dealData(Objects.toString(param.getString("select_column"),"All"),operateMaps.get(kind)) :
-                Tools.quickJSON(StatusCode.NO_FIND,"不支持的功能");
+                        @RequestBody String[] param){
+        if(param.length==0){
+            return operateMaps.containsKey(kind) ?
+                    dealData("*",operateMaps.get(kind)) :
+                    Tools.quickJSON(StatusCode.NO_FIND,"不支持的功能");
+        }else{
+            SelectOperate selectOperate=operateMaps.get(kind);
+            for(String p:param){
+                if(!selectOperate.filterWord(p)){
+                    return Tools.quickJSON(StatusCode.PARAM_LACK, "参数错误");
+                }
+            }
+            return operateMaps.containsKey(kind) ?
+                    dealData(String.join(",",param),selectOperate) :
+                    Tools.quickJSON(StatusCode.NO_FIND,"不支持的功能");
+        }
     }
 
     private JSONObject dealData(String param,SelectOperate selectOperate){
-        if(selectOperate.filterWord(param)) {
-            List<Map<String, ?>> l = sqls.customSqlSession(s -> {
-                try {
-                    return selectOperate.selectOperate(param, s);
-                } catch (CMSException e) {
-                    e.printStackTrace();
-                }
-                return Collections.emptyList();
-            });
-            return Tools.quickJSON(StatusCode.COMPLETE, StatusCode.SUCCESS)
-                    .fluentPut("data", JSON.toJSON(l));
-        }else{
-            return Tools.quickJSON(StatusCode.PARAM_LACK, "参数错误");
-        }
+        List<Map<String, ?>> l = sqls.customSqlSession(s -> {
+            try {
+                return selectOperate.selectOperate(param, s);
+            } catch (CMSException e) {
+                e.printStackTrace();
+            }
+            return Collections.emptyList();
+        });
+        return Tools.quickJSON(StatusCode.COMPLETE, StatusCode.SUCCESS)
+                .fluentPut("data", JSON.toJSON(l));
     }
 
     private static void initFunction(){

@@ -15,21 +15,22 @@ public class TermInfo implements BasicInterface {
 
     private Date StartDate;
 
-    public TermInfo(){}
-
     @Override
     public boolean isNotNull(){
         return TermID!=-1 && TermName!=null && StartDate!=null;
     }
 
+    @JSONField(name = "term_id")
     public int getTermID() {
         return TermID;
     }
 
+    @JSONField(name = "term_id")
     public void setTermID(int termID) {
         TermID = termID;
     }
 
+    @JSONField(name = "term_name")
     public String getTermName() {
         return TermName;
     }
@@ -39,10 +40,12 @@ public class TermInfo implements BasicInterface {
         TermName = termName;
     }
 
+    @JSONField(name = "start_date")
     public Date getStartDate() {
         return StartDate;
     }
 
+    @JSONField(name = "start_date")
     public void setStartDate(Date startDate) {
         StartDate = startDate;
     }

@@ -1,28 +1,23 @@
 package com.zhbit.cms.servlets;
 
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
+
 import com.zhbit.cms.infobeans.TermInfo;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.ModelAndViewDefiningException;
-import org.springframework.web.servlet.View;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.Map;
+import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 @Controller
 public class TestServlet {
 
-    @RequestMapping(value = "/test/{id:new|modify|delete}")
-    public @ResponseBody String h(@RequestBody JSONObject termInfo) {
+    @RequestMapping(value = "/test")
+    public @ResponseBody String h(@RequestBody List args) {
 
-        return "asdas";
+        return args.toString();
 //        for(Object a:termInfo){
 //            System.out.println(a);
 //        }

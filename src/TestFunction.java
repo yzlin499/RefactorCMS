@@ -10,6 +10,7 @@ import java.util.*;
 public class TestFunction {
     public static class a{
         private String asd;
+        private Date date;
 
         public String getAsd() {
             return asd;
@@ -17,6 +18,14 @@ public class TestFunction {
 
         public void setAsd(String asd) {
             this.asd = asd;
+        }
+
+        public Date getDate() {
+            return date;
+        }
+
+        public void setDate(Date date) {
+            this.date = date;
         }
 
         @Override
@@ -27,15 +36,9 @@ public class TestFunction {
         }
     }
 
-    public static void main(String[] args){
-//        String[] aasd=null;
-//        Arrays.fill(aasd,null);
-//        try {
-//            aasd = new String[1];
-//            aasd[0]="qwe";
-//            aasd[1] = "123";
-//        }catch (ArrayIndexOutOfBoundsException e){
-//            System.out.println(aasd[0]);
-//        }
+    public static void main(String[] args) {
+        a asd=new a();
+        asd.setDate(new Date());
+        System.out.println(JSONObject.toJSONString(asd));
     }
 }

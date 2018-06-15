@@ -1,29 +1,20 @@
 package com.zhbit.cms.infobeans;
 
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.zhbit.cms.infobeans.beaninterface.BasicInterface;
 import com.zhbit.cms.infobeans.beaninterface.MapKey;
 
 public class CourseInfo implements BasicInterface {
-    @MapKey("CName")
     private String CourseName;
-    @MapKey("CClass")
     private String ClassName;
-    @MapKey("CWeek")
     private int Week=-1;
-    @MapKey("CClWeek")
     private int ClassWeek=-1;
-    @MapKey("CClTime")
     private int ClassTime=-1;
-    @MapKey("CTeacher")
     private String Teacher;
-    @MapKey("RID")
     private int RID=-1;
-    @MapKey("CStuCount")
     private int StuCount=0;
-    @MapKey("TID")
-    private int CurTermID=-1;
-    @MapKey("CID")
+    private int CurTermID=0;
     private int CourseID=-1;
 
     public CourseInfo(){}
@@ -34,82 +25,102 @@ public class CourseInfo implements BasicInterface {
                 && Teacher!=null && RID!=-1 && StuCount!=-1 && CurTermID!=-1 && CourseID!=-1);
     }
 
+    @JSONField(name = "course_id")
     public int getCourseID() {
         return CourseID;
     }
 
+    @JSONField(name = "course_id")
     public void setCourseID(int courseID) {
         CourseID = courseID;
     }
 
+    @JSONField(name = "course_name")
     public String getCourseName() {
         return CourseName;
     }
 
+    @JSONField(name = "course_name")
     public void setCourseName(String courseName) {
         CourseName = courseName;
     }
 
+    @JSONField(name = "class_name")
     public String getClassName() {
         return ClassName;
     }
 
+    @JSONField(name = "class_name")
     public void setClassName(String className) {
         ClassName = className;
     }
 
+    @JSONField(name = "week")
     public int getWeek() {
         return Week;
     }
 
+    @JSONField(name = "week")
     public void setWeek(int week) {
         Week = week;
     }
 
+    @JSONField(name = "class_week")
     public int getClassWeek() {
         return ClassWeek;
     }
 
+    @JSONField(name = "class_week")
     public void setClassWeek(int classWeek) {
         ClassWeek = classWeek;
     }
 
+    @JSONField(name = "class_time")
     public int getClassTime() {
         return ClassTime;
     }
 
+    @JSONField(name = "class_time")
     public void setClassTime(int classTime) {
         ClassTime = classTime;
     }
 
+    @JSONField(name = "teacher")
     public String getTeacher() {
         return Teacher;
     }
 
+    @JSONField(name = "teacher")
     public void setTeacher(String teacher) {
         Teacher = teacher;
     }
 
+    @JSONField(name = "stu_count")
     public int getStuCount() {
         return StuCount;
     }
 
+    @JSONField(name = "stu_count")
     public void setStuCount(int stuCount) {
         StuCount = stuCount;
     }
 
+    @JSONField(name = "cur_term_id")
     public int getCurTermID() {
         return CurTermID;
     }
 
+    @JSONField(name = "cur_term_id")
     public void setCurTermID(int curTermID) {
         CurTermID = curTermID;
     }
 
+    @JSONField(name = "rid")
     public int getRID() {
         return RID;
     }
 
+    @JSONField(name = "rid")
     public void setRID(int RID) {
         this.RID = RID;
     }

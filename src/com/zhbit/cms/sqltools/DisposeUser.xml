@@ -10,21 +10,15 @@
         <if test="ClassName!=null">,@ClassName=#{ClassName}</if>
         <if test="TelPhone!=null">,@TelPhone=#{TelPhone}</if>
         <if test="sex!=null">,@Sex=#{sex}</if>
+        <if test="PersonGroup!=null">,@PGroup=#{PersonGroup}</if>
     </select>
     
     <select id="LoginUser" parameterType="UserInfo" resultType="UserInfo">
         EXEC F_LoginUser @UserName=#{UserName},@PassWord=#{PassWord},@PGroup=#{PersonGroup}
     </select>
 
-    <select id="SelectPerson" parameterType="int" resultType="UserInfo">
-        SELECT PID AS PersonID,
-               PUserName AS UserName,
-               PCtrlLevel AS PersonCtrlLevel,
-               PEmail AS EMail,
-               PName AS Name,
-               PTel AS TelPhone,
-               PClass AS ClassName,
-               PSex AS sex
+    <select id="SelectPerson" parameterType="String" resultType="java.util.Map">
+        SELECT DISTINCT ${_parameter}
         FROM PersonInfo
     </select>
 

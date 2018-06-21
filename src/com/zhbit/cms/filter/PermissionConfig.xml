@@ -5,6 +5,9 @@
         <!ATTLIST UserGroup minctrllevel CDATA #REQUIRED>]>
 <Permission>
 
+    <Interface name="/dist.*">
+        <UserGroup name="0" minctrllevel="0"/>
+    </Interface>
     <Interface name="/test.*">
         <UserGroup name="0" minctrllevel="0"/>
     </Interface>
@@ -62,7 +65,7 @@
             <UserGroup name="0" minctrllevel="10"/>
         </Interface>
     </Interface>
-    <Interface name="/fitler/.*">
+    <Interface name="/filter/.*">
         <!-- 隐式匹配的接口有：/filter/[room|course] -->
         <UserGroup name="0" minctrllevel="1"/>
 

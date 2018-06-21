@@ -1,7 +1,6 @@
 package com.zhbit.cms.infobeans;
 
 import com.alibaba.fastjson.annotation.JSONField;
-import com.zhbit.cms.infobeans.beaninterface.BasicInterface;
 
 
 public class UserInfo {
@@ -16,21 +15,12 @@ public class UserInfo {
     private int PersonCtrlLevel;
     private int PersonGroup;
 
-
-    public UserInfo(){}
-
-    public int getPersonGroup() {
-        return PersonGroup;
-    }
-
-    public void setPersonGroup(int personGroup) {
-        PersonGroup = personGroup;
-    }
     @JSONField(name="person_id")
     public int getPersonID() {
         return PersonID;
     }
 
+    @JSONField(name="person_id")
     public void setPersonID(int personID) {
         PersonID = personID;
     }
@@ -115,4 +105,13 @@ public class UserInfo {
         TelPhone = telPhone;
     }
 
+    @JSONField(name = "person_group")
+    public int getPersonGroup() {
+        return PersonGroup;
+    }
+
+    @JSONField(name = "person_group")
+    public void setPersonGroup(int personGroup) {
+        PersonGroup = personGroup;
+    }
 }

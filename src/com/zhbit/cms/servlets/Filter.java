@@ -4,7 +4,9 @@ package com.zhbit.cms.servlets;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.zhbit.cms.exceptions.CMSException;
-import com.zhbit.cms.frameclass.*;
+import com.zhbit.cms.frameclass.FilterBean;
+import com.zhbit.cms.frameclass.FilterOperate;
+import com.zhbit.cms.frameclass.StatusCode;
 import com.zhbit.cms.infobeans.beaninterface.ToJSONObject;
 import com.zhbit.cms.sqltools.SqlSessionManagement;
 import com.zhbit.cms.tools.ClassTools;
@@ -14,7 +16,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import java.util.*;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 
 @Controller
 public class Filter {
@@ -56,9 +61,7 @@ public class Filter {
                     jsonArray.add(((ToJSONObject)o).toJSON());
                 }
             }else{
-                for(Object o:a){
-                    jsonArray.add(o);
-                }
+                jsonArray.addAll(a);
             }
             jsonObject.put("data",jsonArray);
         }catch (ClassCastException|NumberFormatException e){

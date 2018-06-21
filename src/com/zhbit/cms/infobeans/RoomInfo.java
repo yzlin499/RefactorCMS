@@ -2,7 +2,6 @@ package com.zhbit.cms.infobeans;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import com.zhbit.cms.infobeans.beaninterface.BasicInterface;
-import com.zhbit.cms.infobeans.beaninterface.MapKey;
 
 public class RoomInfo implements BasicInterface {
     private int RoomID=-1;
@@ -18,11 +17,7 @@ public class RoomInfo implements BasicInterface {
     @Override
     @JSONField(deserialize = false)
     public boolean isNotNull(){
-        if(RoomName!=null && BuildingName!=null && RoomID!=-1 && MaxStudentCount!=-1 && UseFor !=null){
-            return true;
-        }else{
-            return false;
-        }
+        return RoomName != null && BuildingName != null && RoomID != -1 && MaxStudentCount != -1 && UseFor != null;
     }
 
     @JSONField(name = "room_id")

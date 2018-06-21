@@ -7,10 +7,9 @@ import com.zhbit.cms.frameclass.DeleteOperate;
 import com.zhbit.cms.frameclass.ModifyOperate;
 import com.zhbit.cms.frameclass.NewOperate;
 import com.zhbit.cms.infobeans.CourseInfo;
-import com.zhbit.cms.sqltools.SqlKey;
+import com.zhbit.cms.sqltools.S;
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.session.SqlSession;
-import org.springframework.context.annotation.Bean;
 
 /**
  * 控制课程
@@ -20,7 +19,7 @@ public class Course implements NewOperate<CourseInfo>,ModifyOperate<CourseInfo>,
     @Override
     public boolean newOperate(CourseInfo srcData, SqlSession sqls) throws CMSException {
         try {
-            sqls.selectOne(SqlKey.CREATE_COURSE, srcData);
+            sqls.selectOne(S.COURSE.CREATE, srcData);
             return true;
         }catch (PersistenceException e){
             throw new DBException(e.getCause().getMessage());
@@ -33,7 +32,7 @@ public class Course implements NewOperate<CourseInfo>,ModifyOperate<CourseInfo>,
             if(!srcData.isNotNull()){
                 throw new ParamLackException("数据不完整");
             }
-            sqls.selectOne(SqlKey.UPDATE_COURSE, srcData);
+            sqls.selectOne(S.COURSE.UPDATE, srcData);
             return true;
         }catch (PersistenceException e){
             throw new DBException(e.getCause().getMessage());
@@ -43,7 +42,7 @@ public class Course implements NewOperate<CourseInfo>,ModifyOperate<CourseInfo>,
     @Override
     public boolean deleteOperate(Integer srcData, SqlSession sqls) throws CMSException {
         try{
-            sqls.delete(SqlKey.DELETE_COURSE,srcData);
+            sqls.delete(S.COURSE.DELETE,srcData);
             return true;
         }catch (PersistenceException e){
             throw new DBException(e.getCause().getMessage());

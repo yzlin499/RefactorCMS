@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.zhbit.cms.frameclass.StatusCode;
 import com.zhbit.cms.infobeans.QueryRoomParam;
+import com.zhbit.cms.sqltools.S;
 import com.zhbit.cms.sqltools.SqlSessionManagement;
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.springframework.stereotype.Controller;
@@ -11,11 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
-
-import static com.zhbit.cms.sqltools.SqlKey.QUERY_ROOM;
 
 @Controller
 public class Query {
@@ -32,7 +29,7 @@ public class Query {
             JSONArray dataNode=new JSONArray();
             try {
                 dataNode.addAll(
-                        sqls.customSqlSession(sqlSession ->sqlSession.selectList(QUERY_ROOM, data))
+                        sqls.customSqlSession(sqlSession ->sqlSession.selectList(S.ROOM.QUERY, data))
                                 .stream()
                                 .map(JSONObject::toJSON).collect(Collectors.toList())
                 );

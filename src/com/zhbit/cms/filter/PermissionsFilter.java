@@ -1,16 +1,12 @@
 package com.zhbit.cms.filter;
 
-import com.alibaba.fastjson.JSONObject;
 import com.zhbit.cms.frameclass.LoginUsers;
 import com.zhbit.cms.frameclass.PermissionsParsing;
 import com.zhbit.cms.frameclass.StatusCode;
 import com.zhbit.cms.infobeans.UserInfo;
 import com.zhbit.cms.tools.Tools;
-import org.apache.catalina.connector.RequestFacade;
-import org.apache.log4j.Logger;
 
 import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
@@ -25,7 +21,7 @@ public class PermissionsFilter implements Filter {
 
 
 
-    public void init(FilterConfig config) throws ServletException {
+    public void init(FilterConfig config) {
 
     }
 

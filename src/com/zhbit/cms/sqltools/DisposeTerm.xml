@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.zhbit.cms.sqltools.DisposeTerm">
+
     <select id="SelectTerm" parameterType="String" resultType="java.util.Map">
         SELECT DISTINCT ${_parameter}
         FROM TermInfo

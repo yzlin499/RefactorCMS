@@ -7,11 +7,10 @@ import com.zhbit.cms.frameclass.DeleteOperate;
 import com.zhbit.cms.frameclass.ModifyOperate;
 import com.zhbit.cms.frameclass.NewOperate;
 import com.zhbit.cms.infobeans.RoomInfo;
-import com.zhbit.cms.sqltools.SqlKey;
+import com.zhbit.cms.sqltools.S;
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
 
 @Component
 public class Room implements NewOperate<RoomInfo>,ModifyOperate<RoomInfo>,DeleteOperate<Integer>{
@@ -25,7 +24,7 @@ public class Room implements NewOperate<RoomInfo>,ModifyOperate<RoomInfo>,Delete
     @Override
     public boolean deleteOperate(Integer srcData, SqlSession sqls) throws CMSException {
         try{
-            sqls.delete(SqlKey.DELETE_ROOM,srcData);
+            sqls.delete(S.ROOM.DELETE,srcData);
             return true;
         }catch (PersistenceException e){
             throw new DBException(e.getCause().getMessage());
@@ -38,7 +37,7 @@ public class Room implements NewOperate<RoomInfo>,ModifyOperate<RoomInfo>,Delete
             if(!srcData.isNotNull()){
                 throw new ParamLackException("数据不完整");
             }
-            sqls.selectOne(SqlKey.UPDATE_ROOM,srcData);
+            sqls.selectOne(S.ROOM.UPDATE,srcData);
             return true;
         }catch (PersistenceException e){
             throw new DBException(e.getCause().getMessage());
@@ -51,7 +50,7 @@ public class Room implements NewOperate<RoomInfo>,ModifyOperate<RoomInfo>,Delete
             if(srcData.getRoomName()==null || "".equals(srcData.getRoomName())){
                 throw new ParamLackException("RoomName不能为空");
             }else {
-                sqls.selectOne(SqlKey.CREATE_ROOM, srcData);
+                sqls.selectOne(S.ROOM.CREATE, srcData);
                 return true;
             }
         }catch (PersistenceException e){

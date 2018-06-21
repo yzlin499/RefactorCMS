@@ -3,7 +3,6 @@ package com.zhbit.cms.infobeans;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import com.zhbit.cms.infobeans.beaninterface.BasicInterface;
-import com.zhbit.cms.infobeans.beaninterface.MapKey;
 
 public class CourseInfo implements BasicInterface {
     private String CourseName;

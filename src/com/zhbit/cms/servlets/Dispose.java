@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.zhbit.cms.exceptions.CMSException;
 import com.zhbit.cms.frameclass.*;
-import com.zhbit.cms.frameclass.DisposeBean;
 import com.zhbit.cms.sqltools.SqlSessionManagement;
 import com.zhbit.cms.tools.ClassTools;
 import com.zhbit.cms.tools.Tools;
@@ -16,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.*;
+import java.util.HashMap;
 import java.util.function.Function;
 
 @Controller

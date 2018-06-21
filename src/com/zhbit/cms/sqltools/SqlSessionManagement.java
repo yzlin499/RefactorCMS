@@ -7,9 +7,10 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.function.Function;
 
-import static com.zhbit.cms.sqltools.SqlKey.REGISTER;
 
 public final class SqlSessionManagement{
     private static class InstanceClass {
@@ -48,6 +49,16 @@ public final class SqlSessionManagement{
         sqls.commit();
         sqls.close();
         return temp;
+    }
+
+    public Set<String> getTableField(String... tables){
+        return customSqlSession(s->{
+            Set<String> resultSet=new HashSet<>();
+            for (String t:tables) {
+                resultSet.addAll(s.selectList(S.OTHER.GET_TABLE_FIELD,t));
+            }
+            return resultSet;
+        });
     }
 
 

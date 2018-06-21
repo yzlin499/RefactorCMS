@@ -2,14 +2,13 @@ package com.zhbit.cms.wechat;
 
 import com.zhbit.cms.infobeans.QueryRoomParam;
 import com.zhbit.cms.infobeans.wechat.WCText;
+import com.zhbit.cms.sqltools.S;
 import com.zhbit.cms.sqltools.SqlSessionManagement;
 import com.zhbit.cms.wechat.event.WCTextEvent;
 import org.apache.ibatis.exceptions.PersistenceException;
 
 import java.util.*;
 
-import static com.zhbit.cms.sqltools.SqlKey.CURRENT_TERM;
-import static com.zhbit.cms.sqltools.SqlKey.QUERY_ROOM;
 
 public class WCSelectRoom implements WCTextEvent{
     private static String match;
@@ -50,7 +49,7 @@ public class WCSelectRoom implements WCTextEvent{
         StringBuilder reText=new StringBuilder();
         try {
             sqls.customSqlSession(sqlSession ->{
-                List<Map> resultList=sqlSession.selectList(QUERY_ROOM, queryRoomParam);
+                List<Map> resultList=sqlSession.selectList(S.ROOM.QUERY, queryRoomParam);
                 reText.append("查询结果如下").append('\n')
                     .append("课室    时间");
                 for (Map rMap:resultList) {

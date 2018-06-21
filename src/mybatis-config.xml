@@ -31,6 +31,7 @@
         <mapper resource="com/zhbit/cms/sqltools/DisposeCourse.xml"/>
         <mapper resource="com/zhbit/cms/sqltools/DisposeBuildRoom.xml"/>
         <mapper resource="com/zhbit/cms/sqltools/DisposeTerm.xml"/>
+        <mapper resource="com/zhbit/cms/sqltools/Other.xml"/>
     </mappers>
 
 </configuration>

@@ -1,7 +1,6 @@
 package com.zhbit.cms.servlets;
 
 import com.zhbit.cms.infobeans.wechat.SignInfo;
-import com.zhbit.cms.tools.Tools;
 import com.zhbit.cms.wechat.WeChatEventPool;
 import com.zhbit.cms.wechat.WeChatIO;
 import com.zhbit.cms.wechat.WeChatJSUtil;
@@ -14,10 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 @Controller
 @RequestMapping("/wechat")

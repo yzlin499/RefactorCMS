@@ -1,9 +1,7 @@
 package com.zhbit.cms.infobeans;
 
-import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.zhbit.cms.infobeans.beaninterface.BasicInterface;
-import com.zhbit.cms.infobeans.beaninterface.MapKey;
 
 import java.util.Date;
 

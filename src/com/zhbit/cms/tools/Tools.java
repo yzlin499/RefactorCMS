@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
-import java.lang.reflect.Array;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -63,11 +62,11 @@ public final class Tools {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        String num=new BigInteger(1, md.digest()).toString(16);
+        StringBuilder num= new StringBuilder(new BigInteger(1, md.digest()).toString(16));
         while(num.length()<32){
-            num="0"+num;
+            num.insert(0, "0");
         }
-        return num;
+        return num.toString();
     }
 
     /**

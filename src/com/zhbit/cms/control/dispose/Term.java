@@ -7,7 +7,7 @@ import com.zhbit.cms.frameclass.DeleteOperate;
 import com.zhbit.cms.frameclass.ModifyOperate;
 import com.zhbit.cms.frameclass.NewOperate;
 import com.zhbit.cms.infobeans.TermInfo;
-import com.zhbit.cms.sqltools.SqlKey;
+import com.zhbit.cms.sqltools.S;
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.session.SqlSession;
 
@@ -15,7 +15,7 @@ public class Term implements NewOperate<TermInfo>,ModifyOperate<TermInfo>,Delete
     @Override
     public boolean newOperate(TermInfo srcData, SqlSession sqls) throws CMSException {
         try {
-            sqls.selectOne(SqlKey.CREATE_TERM, srcData);
+            sqls.selectOne(S.TERM.CREATE, srcData);
             return true;
         }catch (PersistenceException e){
             throw new DBException(e.getCause().getMessage());
@@ -28,7 +28,7 @@ public class Term implements NewOperate<TermInfo>,ModifyOperate<TermInfo>,Delete
             if(!srcData.isNotNull()){
                 throw new ParamLackException("数据不完整");
             }
-            sqls.selectOne(SqlKey.UPDATE_TERM, srcData);
+            sqls.selectOne(S.TERM.UPDATE, srcData);
             return true;
         }catch (PersistenceException e){
             throw new DBException(e.getCause().getMessage());
@@ -38,7 +38,7 @@ public class Term implements NewOperate<TermInfo>,ModifyOperate<TermInfo>,Delete
     @Override
     public boolean deleteOperate(Integer srcData, SqlSession sqls) throws CMSException {
         try{
-            sqls.delete(SqlKey.DELETE_TERM,srcData);
+            sqls.delete(S.TERM.DELETE,srcData);
             return true;
         }catch (PersistenceException e){
             throw new DBException(e.getCause().getMessage());

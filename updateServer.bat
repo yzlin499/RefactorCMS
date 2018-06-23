@@ -14,4 +14,3 @@ wmic /node:10.0.138.172 /user:administrator /password:zhbit123456!!! process cal
 echo.重启服务器成功,按任意键再次重启服务器
 pause
 goto :start
-

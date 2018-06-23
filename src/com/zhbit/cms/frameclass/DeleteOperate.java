@@ -11,5 +11,5 @@ public interface DeleteOperate<T> extends Operate{
      * @return 是否删除成功
      * @throws CMSException 错误
      */
-    boolean deleteOperate(T srcData, SqlSession sqls) throws CMSException;
+    int deleteOperate(T srcData, SqlSession sqls) throws CMSException;
 }

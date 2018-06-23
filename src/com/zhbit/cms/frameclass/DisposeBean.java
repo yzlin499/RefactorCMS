@@ -29,7 +29,7 @@ public class DisposeBean {
 
     }
 
-    public boolean runOperate(Object srcData, SqlSession sqls) throws CMSException {
+    public int runOperate(Object srcData, SqlSession sqls) throws CMSException {
         if(operateClass.equals(NewOperate.class)){
             return ((NewOperate) operate).newOperate(srcData,sqls);
         }else if(operateClass.equals(ModifyOperate.class)){
@@ -37,7 +37,7 @@ public class DisposeBean {
         }else if(operateClass.equals(DeleteOperate.class)){
             return ((DeleteOperate) operate).deleteOperate(srcData,sqls);
         }
-        return false;
+        return -1;
     }
 
     public Class getParamClass() {

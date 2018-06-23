@@ -90,9 +90,9 @@ public class UserDispose {
                 throw new ParamLackException("非法名字");
             }else if(!Objects.toString(userInfo.getTelPhone(),"").matches("^1[34578]\\d{9}$")) {
                 throw new ParamLackException("非法手机");
-            }else if(!data.containsKey("IdentifyingCode")) {
+            }else if(!data.containsKey("identifying_code")) {
                 throw new ParamLackException("验证码不存在");
-            }else if(!Objects.toString(data.getString("IdentifyingCode"),"").equals(httpSession.getAttribute("IdentifyingCode"))){
+            }else if(!Objects.toString(data.getString("identifying_code"),"").equals(httpSession.getAttribute("identifying_code"))){
                 throw new ParamLackException("验证码错误");
             }else if(userInfo.getClassName()==null){
                 throw new ParamLackException("非法班级");

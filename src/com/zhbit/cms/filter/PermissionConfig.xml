@@ -5,6 +5,9 @@
         <!ATTLIST UserGroup minctrllevel CDATA #REQUIRED>]>
 <Permission>
 
+    <Interface name="/wechat/main">
+        <UserGroup name="0" minctrllevel="0"/>
+    </Interface>
     <Interface name="/dist.*">
         <UserGroup name="0" minctrllevel="0"/>
     </Interface>

@@ -13,7 +13,7 @@ public class IdentifyingCode {
     @RequestMapping("/identifyingcode")
     public void sendIdentifyingCode(HttpSession httpSession, PrintWriter out){
         String temp[]= Tools.createIdentifyingCode();
-        httpSession.setAttribute("IdentifyingCode",Tools.MD5(temp[0].toLowerCase()));
+        httpSession.setAttribute("identifying_code",Tools.MD5(temp[0].toLowerCase()));
         System.out.println(temp[1]);
         out.print(temp[1]);
     }

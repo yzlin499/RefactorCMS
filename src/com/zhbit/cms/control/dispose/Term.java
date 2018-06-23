@@ -13,33 +13,32 @@ import org.apache.ibatis.session.SqlSession;
 
 public class Term implements NewOperate<TermInfo>,ModifyOperate<TermInfo>,DeleteOperate<Integer> {
     @Override
-    public boolean newOperate(TermInfo srcData, SqlSession sqls) throws CMSException {
+    public int newOperate(TermInfo srcData, SqlSession sqls) throws CMSException {
         try {
-            sqls.selectOne(S.TERM.CREATE, srcData);
-            return true;
+            return sqls.selectOne(S.TERM.CREATE, srcData);
         }catch (PersistenceException e){
             throw new DBException(e.getCause().getMessage());
         }
     }
 
     @Override
-    public boolean modifyOperate(TermInfo srcData, SqlSession sqls) throws CMSException {
+    public int modifyOperate(TermInfo srcData, SqlSession sqls) throws CMSException {
         try{
             if(!srcData.isNotNull()){
                 throw new ParamLackException("数据不完整");
             }
             sqls.selectOne(S.TERM.UPDATE, srcData);
-            return true;
+            return srcData.getTermID();
         }catch (PersistenceException e){
             throw new DBException(e.getCause().getMessage());
         }
     }
 
     @Override
-    public boolean deleteOperate(Integer srcData, SqlSession sqls) throws CMSException {
+    public int deleteOperate(Integer srcData, SqlSession sqls) throws CMSException {
         try{
             sqls.delete(S.TERM.DELETE,srcData);
-            return true;
+            return srcData;
         }catch (PersistenceException e){
             throw new DBException(e.getCause().getMessage());
         }

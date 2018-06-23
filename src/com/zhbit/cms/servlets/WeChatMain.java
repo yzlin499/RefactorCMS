@@ -2,9 +2,9 @@ package com.zhbit.cms.servlets;
 
 import com.zhbit.cms.infobeans.wechat.SignInfo;
 import com.zhbit.cms.wechat.WeChatEventPool;
-import com.zhbit.cms.wechat.WeChatIO;
 import com.zhbit.cms.wechat.WeChatJSUtil;
 import com.zhbit.cms.wechat.event.WeChatEvent;
+import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @Controller
 @RequestMapping("/wechat")
@@ -30,7 +31,14 @@ public class WeChatMain{
 
     @RequestMapping("/main")
     public void doWeChatMain(HttpServletRequest req, HttpServletResponse resp){
-        weChatEventPool.newMsg(new WeChatIO(req,resp));
+        try {
+            String r=req.getParameter("echostr");
+            Logger.getLogger(WeChatMain.class).error(r);
+            resp.getWriter().print(r);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+//        weChatEventPool.newMsg(new WeChatIO(req,resp));
     }
 
 

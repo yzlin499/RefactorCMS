@@ -17,33 +17,32 @@ import org.apache.ibatis.session.SqlSession;
 public class Course implements NewOperate<CourseInfo>,ModifyOperate<CourseInfo>,DeleteOperate<Integer> {
 
     @Override
-    public boolean newOperate(CourseInfo srcData, SqlSession sqls) throws CMSException {
+    public int newOperate(CourseInfo srcData, SqlSession sqls) throws CMSException {
         try {
-            sqls.selectOne(S.COURSE.CREATE, srcData);
-            return true;
+            return sqls.selectOne(S.COURSE.CREATE, srcData);
         }catch (PersistenceException e){
             throw new DBException(e.getCause().getMessage());
         }
     }
 
     @Override
-    public boolean modifyOperate(CourseInfo srcData, SqlSession sqls) throws CMSException {
+    public int modifyOperate(CourseInfo srcData, SqlSession sqls) throws CMSException {
         try{
             if(!srcData.isNotNull()){
                 throw new ParamLackException("数据不完整");
             }
             sqls.selectOne(S.COURSE.UPDATE, srcData);
-            return true;
+            return srcData.getCourseID();
         }catch (PersistenceException e){
             throw new DBException(e.getCause().getMessage());
         }
     }
 
     @Override
-    public boolean deleteOperate(Integer srcData, SqlSession sqls) throws CMSException {
+    public int deleteOperate(Integer srcData, SqlSession sqls) throws CMSException {
         try{
             sqls.delete(S.COURSE.DELETE,srcData);
-            return true;
+            return srcData;
         }catch (PersistenceException e){
             throw new DBException(e.getCause().getMessage());
         }

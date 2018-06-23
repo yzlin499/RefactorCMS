@@ -8,9 +8,9 @@ public final class S {
         private USER(){}
         private static final String PACKAGE= S.PACKAGE+"DisposeUser.";
 
-        public static final String REGISTER     =PACKAGE+"DisposeUser.Register";
-        public static final String LOGIN        =PACKAGE+"DisposeUser.LoginUser";
-        public static final String SELECT_PERSON=PACKAGE+"DisposeUser.SelectPerson";
+        public static final String REGISTER     =PACKAGE+"Register";
+        public static final String LOGIN        =PACKAGE+"LoginUser";
+        public static final String SELECT_PERSON=PACKAGE+"SelectPerson";
     }
 
     public final static class COURSE{

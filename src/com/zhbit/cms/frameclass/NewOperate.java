@@ -11,5 +11,5 @@ public interface NewOperate<T> extends Operate{
      * @return 是否创建成功
      * @throws CMSException 错误
      */
-    boolean newOperate(T srcData, SqlSession sqls) throws CMSException;
+    int newOperate(T srcData, SqlSession sqls) throws CMSException;
 }

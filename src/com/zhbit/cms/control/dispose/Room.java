@@ -22,37 +22,36 @@ public class Room implements NewOperate<RoomInfo>,ModifyOperate<RoomInfo>,Delete
 
 
     @Override
-    public boolean deleteOperate(Integer srcData, SqlSession sqls) throws CMSException {
-        try{
-            sqls.delete(S.ROOM.DELETE,srcData);
-            return true;
+    public int newOperate(RoomInfo srcData, SqlSession sqls) throws CMSException {
+        try {
+            if(srcData.getRoomName()==null || "".equals(srcData.getRoomName())){
+                throw new ParamLackException("RoomName不能为空");
+            }else {
+                return sqls.selectOne(S.ROOM.CREATE, srcData);
+            }
         }catch (PersistenceException e){
             throw new DBException(e.getCause().getMessage());
         }
     }
 
     @Override
-    public boolean modifyOperate(RoomInfo srcData, SqlSession sqls) throws CMSException {
+    public int modifyOperate(RoomInfo srcData, SqlSession sqls) throws CMSException {
         try{
             if(!srcData.isNotNull()){
                 throw new ParamLackException("数据不完整");
             }
             sqls.selectOne(S.ROOM.UPDATE,srcData);
-            return true;
+            return srcData.getRoomID();
         }catch (PersistenceException e){
             throw new DBException(e.getCause().getMessage());
         }
     }
 
     @Override
-    public boolean newOperate(RoomInfo srcData, SqlSession sqls) throws CMSException {
-        try {
-            if(srcData.getRoomName()==null || "".equals(srcData.getRoomName())){
-                throw new ParamLackException("RoomName不能为空");
-            }else {
-                sqls.selectOne(S.ROOM.CREATE, srcData);
-                return true;
-            }
+    public int deleteOperate(Integer srcData, SqlSession sqls) throws CMSException {
+        try{
+            sqls.delete(S.ROOM.DELETE,srcData);
+            return srcData;
         }catch (PersistenceException e){
             throw new DBException(e.getCause().getMessage());
         }

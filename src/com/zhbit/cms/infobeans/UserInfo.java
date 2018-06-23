@@ -1,5 +1,6 @@
 package com.zhbit.cms.infobeans;
 
+import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.annotation.JSONField;
 
 
@@ -15,6 +16,12 @@ public class UserInfo {
     private int PersonCtrlLevel;
     private int PersonGroup;
 
+    public static void main(String [] args){
+        UserInfo userInfo=new UserInfo();
+        userInfo.setPersonCtrlLevel(10);
+        System.out.println(JSONObject.toJSON(userInfo));
+    }
+
     @JSONField(name="person_id")
     public int getPersonID() {
         return PersonID;
@@ -25,7 +32,7 @@ public class UserInfo {
         PersonID = personID;
     }
 
-    @JSONField(name = "person_ctrl_level")
+    @JSONField(name = "person_ctrl_level",deserialize = false)
     public int getPersonCtrlLevel() {
         return PersonCtrlLevel;
     }

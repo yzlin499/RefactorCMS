@@ -11,5 +11,5 @@ public interface ModifyOperate<T> extends Operate{
     * @return 是否修改成功
     * @throws CMSException 错误
     */
-    boolean modifyOperate(T srcData, SqlSession sqls) throws CMSException;
+    int modifyOperate(T srcData, SqlSession sqls) throws CMSException;
 }

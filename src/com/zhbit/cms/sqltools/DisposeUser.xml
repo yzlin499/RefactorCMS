@@ -30,8 +30,4 @@
         <!--@BindValue=#{BindValue}-->
     <!--</select>-->
     <!--TODO:一个地方-->
-    
-    <!--<update id="UpdateBuildingInfo" parameterType="UpdateBuildingInfo">-->
-        <!--update BuildingInfo set Buuid=@buuid where bid=@bid-->
-    <!--</update>-->
 </mapper>

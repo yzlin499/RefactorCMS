@@ -5,4 +5,13 @@
     <select id="GetTableField" parameterType="String" resultType="String">
         SELECT DISTINCT name  from syscolumns where id=object_id(#{name})
     </select>
+
+    <select id="GenerateVerifyCode" parameterType="String" resultType="int">
+        EXEC F_GenerateVerifyCode @WechatID=#{name}
+    </select>
+
+    <select id="CheckIn" parameterType="map" resultType="String">
+        EXEC F_CheckIn @VerifyCode=#{verifyCode},@BuildingFlag=#{buildingFlag}
+    </select>
+
 </mapper>

@@ -7,6 +7,7 @@ import com.zhbit.cms.frameclass.*;
 import com.zhbit.cms.sqltools.SqlSessionManagement;
 import com.zhbit.cms.tools.ClassTools;
 import com.zhbit.cms.tools.Tools;
+import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -80,6 +81,9 @@ public class Dispose{
         }catch(ClassCastException|NumberFormatException e){
             resultJSON.put(StatusCode.STATUS, StatusCode.PARAM_LACK);
             resultJSON.put(StatusCode.MESSAGE,"参数转换错误:"+e.getMessage());
+        }catch (PersistenceException e){
+            resultJSON.put(StatusCode.STATUS, StatusCode.DB_ERROR);
+            resultJSON.put(StatusCode.MESSAGE,"来自数据库的崩坏:"+e.getMessage());
         }
         return resultJSON;
     }

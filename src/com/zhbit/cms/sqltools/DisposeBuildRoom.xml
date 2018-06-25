@@ -38,7 +38,7 @@
         <if test="BuildingName!=null">,@BuildingName=#{BuildingName}</if>
     </select>
     
-    <!--<update id="BindingBuuid" parameterType="BindingBIDAndBuuid">-->
-        <!--UPDATE BuildingInfo SET BUUID=#{Buuid} WHERE BID=#{BID}-->
-    <!--</update>-->
+    <update id="BindingBuuid" parameterType="BindingBIDAndBuuid">
+        UPDATE BuildingInfo SET BUUID=#{Buuid} WHERE BID=#{BID}
+    </update>
 </mapper>

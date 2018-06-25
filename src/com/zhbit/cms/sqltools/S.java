@@ -54,6 +54,13 @@ public final class S {
         public static final String GET_TABLE_FIELD = PACKAGE+"GetTableField";
     }
 
-    public static final String BINDING_BUUID=PACKAGE+"DisposeBuildRoom.BindingBuuid";
+    public final static class CHECK{
+        private CHECK(){}
+
+        public static final String GENERATE_VERIFY_CODE=PACKAGE+"other.GenerateVerifyCode";
+        public static final String CHECK_IN=PACKAGE+"other.CheckIn";
+        public static final String BINDING_BUUID=PACKAGE+"DisposeBuildRoom.BindingBuuid";
+    }
+
 
 }

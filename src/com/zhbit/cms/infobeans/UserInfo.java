@@ -117,6 +117,7 @@ public class UserInfo {
         return PersonGroup;
     }
 
+
     @JSONField(name = "person_group")
     public void setPersonGroup(int personGroup) {
         PersonGroup = personGroup;

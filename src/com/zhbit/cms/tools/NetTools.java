@@ -138,7 +138,7 @@ public class NetTools {
             Tools.sleep(10000);
             return sendPost(url,param,connections,solution);
         }
-        try (BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream(),"utf8"))){
+        try (BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream(),"gbk"))){
             String line;
             StringBuilder result=new StringBuilder();
             while ((line = in.readLine()) != null) {

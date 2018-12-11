@@ -25,12 +25,12 @@ public class Dispose{
     private static HashMap<String,HashMap<String,DisposeBean>> operateMaps;
     private static final SqlSessionManagement sqls=SqlSessionManagement.getInstance();
 
+//    @RequestMapping(value = "/{kind}",method = RequestMethod.GET)
+//    public @ResponseBody JSONObject a(){
+//
+//    }
 
-
-
-
-
-    @RequestMapping("/dispose/{kind}/{operate:new|modify|delete}")
+    @RequestMapping(value = "/dispose/{kind}/{operate:new|modify|delete}")
     public @ResponseBody JSONObject doDispose(@PathVariable("kind")String kind,
                                               @PathVariable("operate")String operate,
                                               @RequestBody JSONArray param){

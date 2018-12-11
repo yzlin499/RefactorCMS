@@ -5,6 +5,7 @@ import com.alibaba.fastjson.annotation.JSONField;
 import com.zhbit.cms.infobeans.beaninterface.BasicInterface;
 
 public class CourseInfo implements BasicInterface {
+
     private String CourseName;
     private String ClassName;
     private int Week=-1;

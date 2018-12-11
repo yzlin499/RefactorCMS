@@ -12,8 +12,11 @@ import java.util.Formatter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.function.Function;
 
 public class WeChatJSUtil {
+    protected Function function;
+
     private static class InstanceClass {
         private static final WeChatJSUtil instance=new WeChatJSUtil();
     }

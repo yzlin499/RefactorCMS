@@ -15,7 +15,6 @@
     <update id="UpdateTerm" parameterType="TermInfo">
         UPDATE TermInfo
         <set>
-            <if test="TermID!=-1">TID=#{TermID},</if>
             <if test="TermName!=null">TName=#{TermName},</if>
             <if test="StartDate!=null">TStartDate=#{StartDate}</if>
         </set>
